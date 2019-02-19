@@ -58,4 +58,56 @@ It was a drak and stormy night`;
             expect(fullName).toBe('That is Schmidt, Joe');
         });
     });
+    describe('various literals', () => {
+        it('examples', () => {
+            let n1 = 12; //number
+            let n2 = 1.3; // still a number
+            let n3 = 0xff; // still a number, but hex
+            let n4 = 0b00101; // still a number, but binary
+            let n5 = 0o744; // octal
+
+            //typescript thing
+            const salary = 1_000_000; //underscore in place of commas to make reading numbers easier
+        });
+    });
+    describe('arrays and array literals', () => {
+        it('has them', () => {
+            //const stuff : (number | string)[] = [12, 13];
+            const stuff: Array<number | string> = [12, 13]; //typescript makes this possible
+
+            stuff[2] = 'tacos';
+
+            expect(stuff[2]).toBe('tacos');
+
+            let food = stuff[2];
+
+        });
+        describe('tuples', () => {
+            it('a brief introduction TS', () => {
+                let warren: [string, string, number, string];
+                warren = ['Warren', 'Ellis', 55, 'Musician'];
+
+                let occupation = warren[3];
+                let age = warren[2];
+            });
+            it('an example', () => {
+
+                function formatName(first: string, last: string): [string, number] {
+                    const fullName = `${last}, ${first}`;
+                    return [fullName, fullName.length];
+                }
+                const [fullName, len] = formatName('Han', 'Solo'); // destructuring
+                expect(fullName).toBe('Solo, Han');
+                expect(len).toBe(9);
+
+
+                const stuff = ['Jeff', 'Gonzalez', 49];
+                const [firstName, , age] = stuff;
+                expect(firstName).toBe('Jeff');
+                expect(age).toBe(49);
+            });
+
+
+        });
+    });
 });
