@@ -1,3 +1,4 @@
+import { formatName } from "./utils";
 describe('funtions', () => {
     describe('syntax for creating them', () => {
         it('declaring them', () => {
@@ -30,8 +31,14 @@ describe('funtions', () => {
         // A higher order function is a function that takes as an argument one or more functions and/or returns a function
         it('first example', () => {
 
-           
+            const answer = formatName('Han', 'Solo', makeItUpper);
+            expect(answer).toBe('SOLO, HAN');
 
+            const answer2 = formatName('Han', 'Solo', (x: string) => `***${x}***`);
+            expect(answer2).toBe('***Solo, Han***');
+            function makeItUpper(what: string) {
+                return what.toUpperCase();
+            }
         });
     });
 });
